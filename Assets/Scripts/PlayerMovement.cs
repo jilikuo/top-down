@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float base_speed;
+    EntityStats entity_stats;
     float diagonal_nerf;
     float move_speed;
 
     // Start is called before the first frame update
     void Start()
     {
-        move_speed = base_speed;
+        entity_stats = GetComponent<EntityStats>();
+        move_speed = entity_stats.base_speed;
         diagonal_nerf = 0.66f;
+        entity_stats.hp = entity_stats.max_hp;
     }
 
     // Update is called once per frame
@@ -32,7 +34,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (horizontal != 0 && vertical != 0)
         {
-            move_speed = base_speed * diagonal_nerf;
+            move_speed = entity_stats.base_speed * diagonal_nerf;
+        }
+        else{
+            move_speed = entity_stats.base_speed;
         }
 
     }
