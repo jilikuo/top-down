@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class ProjectileDamage : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public float projectile_damage;
+
     void Start()
+    {
+        Destroy(this.gameObject, 2); 
+    }
+
+
+    void Update()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision.gameObject.tag == "Enemy")
+        {
+            collision.gameObject.GetComponent<EntityStats>().hp -= projectile_damage;
+            Destroy(this.gameObject);
+        }
     }
 }
