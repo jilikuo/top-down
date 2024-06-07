@@ -27,4 +27,6 @@ public class EntityStats : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+
 }
